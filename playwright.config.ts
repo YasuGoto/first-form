@@ -8,4 +8,5 @@ export default defineConfig({
     headless: true, // ヘッドレスモードで実行
     viewport: { width: 1280, height: 720 },
   },
+  snapshotSuffix: process.platform, // macOS -> -darwin, Windows -> -win32
 });
