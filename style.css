@@ -9,7 +9,7 @@ body {
 
 .accordion button {
   cursor: pointer;
-  background-color: #eee;
+  background-color: red;
   border: none;
   padding: 10px;
   width: 100%;
