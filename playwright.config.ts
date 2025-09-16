@@ -1,11 +1,12 @@
 import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./test", // テストファイルの場所
-  timeout: 30000, // テストタイムアウト
-  reporter: [["html", { open: "never" }]], // HTMLレポート出力
+  testDir: "./test",
+  timeout: 30000,
+  reporter: [["html", { open: "never" }]],
   use: {
-    headless: true, // ヘッドレスモードで実行
+    headless: true,
     viewport: { width: 1280, height: 720 },
   },
+  snapshotSuffix: process.platform as string, // 型キャストで解消
 });
