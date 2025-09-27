@@ -21,3 +21,11 @@ body {
   border: 1px solid #ccc;
   margin-top: 5px;
 }
+
+.message.is-error {
+  color: red;
+}
+
+.input.is-error {
+  border: 1px solid red;
+}

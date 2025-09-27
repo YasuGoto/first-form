@@ -4,31 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VRT Test</title>
+  <title>テストページ</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-  <h1>VRT テストページ</h1>
+  <h1>テストページ</h1>
+  <ul>
+    <li>
+      <h2>VRT</h2>
+      <!-- シンプルフォーム -->
+      <form id="simple-form">
+        <label>
+          Name:
+          <input type="text" id="name-input">
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+      <p id="greeting">ここに挨拶が表示されます</p>
 
-  <!-- シンプルフォーム -->
-  <form id="simple-form">
-    <label>
-      Name:
-      <input type="text" id="name-input">
-    </label>
-    <button type="submit">Submit</button>
-  </form>
-  <p id="greeting">ここに挨拶が表示されます</p>
+      <!-- アコーディオン -->
+      <div class="accordion">
+        <button id="accordion-btn">アコーディオンタイトル</button>
+        <div id="accordion-content" class="hidden">
+          ここがアコーディオンのコンテンツです。
+        </div>
+      </div>
+    </li>
+    <li>
+      <h2>バリデーション</h2>
+      <h3>必須入力チェック</h3>
+      <form id="form1">
+        <label for="name">
+          名前：
+          <input type="text" id="name" class="input">
+        </label>
+        <label for="email">
+          メールアドレス：
+          <!-- バリデーションの勉強用にtextに設定 -->
+          <input type="text" id="email" class="input">
+        </label>
+        <p class="message"></p>
+        <button type="submit">送信！</button>
+      </form>
+    </li>
+  </ul>
 
-  <!-- アコーディオン -->
-  <div class="accordion">
-    <button id="accordion-btn">アコーディオンタイトル</button>
-    <div id="accordion-content" class="hidden">
-      ここがアコーディオンのコンテンツです。
-    </div>
-  </div>
-
+  <script type="module" src="./vrt.ts"></script>
   <script type="module" src="./main.ts"></script>
 </body>
 
