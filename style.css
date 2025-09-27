@@ -22,6 +22,10 @@ body {
   margin-top: 5px;
 }
 
-.is-error {
+.message.is-error {
   color: red;
+}
+
+.input.is-error {
+  border: 1px solid red;
 }
