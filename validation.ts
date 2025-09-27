@@ -13,6 +13,12 @@ function isEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+// パスワードチェック
+function isStrongPassword(value: string): boolean {
+  // 半角英数字8文字以上、数字と記号を含む
+  return /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/.test(value);
+}
+
 // メッセージを表示するヘルパー
 function showMessage(formId: string, message: string, isError: boolean) {
   const textEl = document.querySelector<HTMLParagraphElement>(
@@ -85,5 +91,53 @@ export function initForm1(formId: string) {
     }
 
     showMessage(formId, "送信成功！", false);
+  });
+}
+
+export function initForm2(formId: string) {
+  const errorClassName = "is-error";
+  const form = document.getElementById(formId);
+  if (!form) return;
+
+  const msgEl = document.querySelector<HTMLParagraphElement>(
+    `#${formId} .message`
+  );
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!msgEl) return;
+
+    const password = form.querySelector<HTMLInputElement>("#pass")?.value ?? "";
+    const passwordConfirm =
+      form.querySelector<HTMLInputElement>("#pass_confirm")?.value ?? "";
+    const agree =
+      form.querySelector<HTMLInputElement>("#agree")?.checked ?? false;
+
+    const errors: string[] = [];
+
+    // パスワード必須 & 強度チェック
+    if (!password) {
+      errors.push("パスワードを入力してください。");
+    } else if (!isStrongPassword(password))
+      errors.push("パスワードは8文字以上で数字・記号を含めてください。");
+
+    // パスワード再入力確認
+    if (password !== passwordConfirm) errors.push("パスワードが一致しません。");
+
+    // チェックボックス必須
+    if (!agree) errors.push("利用規約に同意してください。");
+
+    // メッセージ表示
+    if (errors.length > 0) {
+      msgEl.innerHTML = errors.map((e) => `<div>${e}</div>`).join("");
+      msgEl.classList.remove("success");
+      msgEl.classList.add("error");
+      msgEl.classList.add(errorClassName);
+    } else {
+      msgEl.textContent = "送信成功！";
+      msgEl.classList.remove("error");
+      msgEl.classList.add("success");
+      msgEl.classList.remove(errorClassName);
+    }
   });
 }
